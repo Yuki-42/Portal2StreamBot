@@ -1,0 +1,13 @@
+{
+    "ping": {
+        "name": "ping",
+        "description": "Gets the current ping from your client to the bot. Useful for checking if the bot is frozen/offline.",
+        "usage": "ping",
+        "aliases": ["latency"]
+    },
+    "help": {
+        "name": "help",
+        "description": "Shows a list of commands or information about a specific command.",
+        "usage": "help [command]"
+    }
+}
