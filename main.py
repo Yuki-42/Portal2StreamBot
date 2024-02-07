@@ -7,15 +7,17 @@ Main file of the project.
 # It is not listed in the requirements.txt file because the PIP package is very outdated.
 
 # Standard Library Imports
-from os import environ
+from os import environ, system
+from cmd import Cmd
 
 # Third Party Imports
 from discord import Bot, Intents, ApplicationContext, option, Embed
 from dotenv import load_dotenv as loadDotenv
 
+
 # Local Imports
 from internals.help import Help
-from internals._logging import createLogger, SuppressedLoggerAdapter
+from internals.logging import createLogger, SuppressedLoggerAdapter
 
 # Load the environment variables
 loadDotenv()
@@ -88,6 +90,29 @@ async def _help(ctx: ApplicationContext, command: str = None) -> None:
 
     # Send the help message
     await ctx.respond(embed=embed, ephemeral=True)
+
+
+@bot.command(
+    name="test",
+    description="Test the bot's connection to the portal2 client.",
+    usage="test",
+    aliases=["verify"]
+)
+async def _test(ctx: ApplicationContext) -> None:
+    """
+    Test the bot's connection to the portal2 client.
+
+    Args:
+        ctx (ApplicationContext): Context of the command.
+
+    Returns:
+        None
+    """
+    # Send the test message
+    logger.info(f"_test: Sending test message to {ctx.author}")
+    system(f"echo \"Testing connection to {target}:{port}\" | ncat {target} {port}")
+    await ctx.respond(f"Testing connection to {target}:{port}", ephemeral=True)
+
 
 # Run the bot
 if __name__ == "__main__":

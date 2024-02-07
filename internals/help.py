@@ -10,7 +10,7 @@ from pathlib import Path
 from discord import Embed, Colour
 
 # Local
-from ._logging import SuppressedLoggerAdapter
+from .logging import SuppressedLoggerAdapter
 
 
 class Help:
@@ -21,7 +21,7 @@ class Help:
     logger: SuppressedLoggerAdapter
     file: dict[str, dict[str, str]]
 
-    def __init__(self, logger: SuppressedLoggerAdapter, helpFile: str | Path = Path("help.json")) -> None:
+    def __init__(self, logger: SuppressedLoggerAdapter, helpFile: str | Path = Path("BotData/help.json")) -> None:
         """
         Constructor for the Help class.
 
